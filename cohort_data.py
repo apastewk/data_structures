@@ -57,23 +57,32 @@ def sort_by_cohort(filename):
     for line in data_file:
         line = line.rstrip()
         data = line.split('|')
+        print data
         full_name = data[0] + ' ' + data[1]
+        #print full_name
 
 
         if data[4] == 'Winter 2015':
             winter_15.append(full_name)
-            winter_15.sort
+            winter_15.sort()
         elif data[4] == 'Spring 2015':
             spring_15.append(full_name)
-            spring_15.sort
+            spring_15.sort()
         elif data[4] == 'Summer 2015':
             summer_15.append(full_name)
-            summer_15.sort
+            summer_15.sort()
+        elif data[4] == "TA":
+            tas.append(full_name)
+            tas.sort
+        else:
+            break
+
+    all_students.extend([winter_15, spring_15, summer_15, tas])
         
-    print spring_15
+    #print winter_15
     return all_students
 
-sort_by_cohort("cohort_data.txt")
+#sort_by_cohort("cohort_data.txt")
 
 def students_by_house(filename):
     """TODO: Sort students by house.
@@ -106,8 +115,37 @@ def students_by_house(filename):
     instructors = []
 
     # Code goes here
+    data_file = open(filename)
+    for line in data_file:
+        line = line.rstrip()
+        data = line.split('|')
 
+        if data[2] == 'Gryffindor':
+            gryffindor.append(data[1])
+            gryffindor.sort()
+        elif data[2] == 'Hufflepuff':
+            hufflepuff.append(data[1])
+            hufflepuff.sort()
+        elif data[2] == 'Slytherin':
+            slytherin.append(data[1])
+            slytherin.sort()
+        elif data[2] == "Dumbledore's Army":
+            dumbledores_army.append(data[1])
+            dumbledores_army.sort()
+        elif data[2] == "Order of the Phoenix":
+            order_of_the_phoenix.append(data[1])
+            order_of_the_phoenix.sort() 
+        elif data[2] == "Ravenclaw":
+            ravenclaw.append(data[1])
+            ravenclaw.sort()
+            dumbledores_army.sort()
+        else:
+            break
+    
+    print gryffindor
     return all_students
+
+students_by_house("cohort_data.txt")
 
 
 def all_students_tuple_list(filename):
